@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "React-State-CTRL is state container for react app",
   "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iNont/react-state-ctrl.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "prop-types": "^15.6.0",

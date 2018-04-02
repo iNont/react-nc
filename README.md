@@ -10,7 +10,7 @@ npm install react-state-ctrl --save
 ## Example
 
 #### `index.js`
-```
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -28,7 +28,7 @@ ReactDOM.render(
 ```
 
 #### `App.js`
-```
+```js
 import React, { Component } from 'react';
 
 import CTRL from 'react-state-ctrl';
