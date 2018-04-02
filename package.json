@@ -1,6 +1,6 @@
 {
   "name": "react-state-ctrl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React-State-CTRL is state container for react app",
   "main": "build/index.js",
   "repository": {
