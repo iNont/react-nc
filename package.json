@@ -1,16 +1,17 @@
 {
-  "name": "react-state-ctrl",
-  "version": "1.0.2",
-  "description": "React-State-CTRL is state container for react app",
+  "name": "react-nc",
+  "version": "1.0.0",
+  "description": "React-NC is state container for react app",
   "main": "build/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iNont/react-state-ctrl.git"
+    "url": "https://github.com/iNont/react-nc.git"
   },
   "dependencies": {},
   "devDependencies": {
     "prop-types": "^15.6.0",
     "react": "^15.5.4",
+    "react-router": "^4.2.0",
     "webpack": "^2.6.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",

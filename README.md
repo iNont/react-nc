@@ -1,10 +1,10 @@
-# React-State-CTRL
+# React-NC
 
 
 ## Installation
 
 ```
-npm install react-state-ctrl --save
+npm install react-nc --save
 ```
 
 ## Example
@@ -15,7 +15,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import CTRL, { StateControl } from 'react-state-ctrl';
+import CTRL, { StateControl } from 'react-nc';
 
 CTRL.initializeState({
   name: "iNont"
@@ -31,7 +31,7 @@ ReactDOM.render(
 ```js
 import React, { Component } from 'react';
 
-import CTRL from 'react-state-ctrl';
+import CTRL from 'react-nc';
 
 class App extends Component {
   render() {
