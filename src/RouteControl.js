@@ -13,6 +13,13 @@ class RouteControlComponent extends React.Component {
       CTRL.forceUpdate();
     }
   }
+  componentDidUpdate() {
+    this.previousLocation = JSON.stringify(CTRL.location);
+    CTRL.location = this.props.props.location;
+    if(this.previousLocation !== JSON.stringify(CTRL.location)) {
+      CTRL.forceUpdate();
+    }
+  }
   render() {
     if(CTRL.redirectTo) {
       let redirectTo = CTRL.redirectTo;
