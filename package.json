@@ -1,6 +1,6 @@
 {
   "name": "react-nc",
-  "version": "1.0.1",
+  "version": "1.0.12",
   "description": "React-NC is state container for react app",
   "main": "build/index.js",
   "repository": {
