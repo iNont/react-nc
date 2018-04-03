@@ -28,6 +28,6 @@ export const RouteControl = Comp => (props => {
     CTRL.redirectTo = undefined;
     return <Redirect to={redirectTo} />
   }
-  return <Comp {...props} />;
+  return <Comp {...props} ref={() => CTRL.location = props.location} />;
 });
 export default CTRL;
