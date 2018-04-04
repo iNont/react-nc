@@ -10,11 +10,9 @@ class RouteControlComponent extends React.Component {
   }
   componentWillMount() {
     CTRL.log("RouteControl willMount");
-    CTRL.routeUpdating = true;
   }
   componentDidMount() {
     CTRL.log("RouteControl didMount");
-    CTRL.routeUpdating = false;
     if(this.previousLocation !== JSON.stringify(CTRL.location)) {
       CTRL.log("RouteControl location changed");
       CTRL.forceUpdate();
@@ -22,11 +20,9 @@ class RouteControlComponent extends React.Component {
   }
   componentWillUpdate() {
     CTRL.log("RouteControl willUpdate");
-    CTRL.routeUpdating = true;
   }
   componentDidUpdate() {
     CTRL.log("RouteControl didUpdate");
-    CTRL.routeUpdating = false;
     this.previousLocation = JSON.stringify(CTRL.location);
     CTRL.location = this.props.props.location;
     if(this.previousLocation !== JSON.stringify(CTRL.location)) {

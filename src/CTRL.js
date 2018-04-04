@@ -1,7 +1,5 @@
 const CTRL = {
   app: { forceUpdate: ()=>{} },
-  appUpdating: false,
-  routeUpdating: false,
   debug: false,
   initialState: {},
   state: {},
@@ -12,10 +10,8 @@ const CTRL = {
   },
   log: (text) => { if(CTRL.debug) console.log(`React-nc: ${text}`); },
   forceUpdate: () => {
-    if(!CTRL.appUpdating && !CTRL.routeUpdating) {
-      CTRL.log("forceUpdate()");
-      CTRL.app.forceUpdate();
-    }
+    CTRL.log("forceUpdate()");
+    CTRL.app.forceUpdate();
   },
   setState: state => {
     CTRL.log(`setState()`);

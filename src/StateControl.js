@@ -7,11 +7,9 @@ class StateControlComponent extends React.Component {
     CTRL.app = this;
   }
   componentWillMount() {
-    CTRL.appUpdating = true;
     CTRL.log("StateControl willMount");
   }
   componentDidMount() {
-    CTRL.appUpdating = false;
     CTRL.log("StateControl didMount");
     if(CTRL.redirectTo) {
       CTRL.log("StateControl needRedirect");
@@ -19,11 +17,9 @@ class StateControlComponent extends React.Component {
     }
   }
   componentWillUpdate() {
-    CTRL.appUpdating = true;
     CTRL.log("StateControl willUpdate");
   }
   componentDidUpdate() {
-    CTRL.appUpdating = false;
     CTRL.log("StateControl didUpdate");
     if(CTRL.redirectTo) {
       CTRL.log("StateControl needRedirect");
