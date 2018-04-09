@@ -37,9 +37,9 @@ class App extends Component {
   render() {
     return (
       <div>
-      	My name is {CTRL.state.name}.
+        My name is {CTRL.state.name}.
         <input value={CTRL.state.name} placeholder="Type to change name"
-        	onChange={(event)=>CTRL.setState({ name: event.target.value })} />
+          onChange={(event)=>CTRL.setState({ name: event.target.value })} />
       </div>
     );
   }
@@ -58,7 +58,7 @@ Set the initial state of CTRL.
 
 ```js
 CTRL.initializeState({
-	name: "iNont",
+  name: "iNont",
   title: "React-NC",
   array: [0, 1, 2, 3]
 });
@@ -74,18 +74,18 @@ Set state of CTRL, you can use it likes `setState()` of react component.
 
 ```js
 CTRL.initializeState({
-	name: "iNont",
+  name: "iNont",
   title: "React-NC",
   array: [0, 1, 2, 3]
 });
 CTRL.setState({
-	name: "Changed name"
+  name: "Changed name"
 });
 
 console.log(CTRL.state);
 
 /* Output: {
-	name: "Changed name",
+  name: "Changed name",
   title: "React-NC",
   array: [0, 1, 2, 3]
 } */
@@ -149,10 +149,10 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      	<Switch>
-      		<Route exact path="/" component={MainPage} />
-      		<Route exact path="/edit" component={EditPage} />
-      	</Switch>
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/edit" component={EditPage} />
+        </Switch>
       </BrowserRouter>
     );
   }
@@ -171,8 +171,8 @@ class MainPage extends Component {
   render() {
     return (
       <div>
-      	My name is {CTRL.state.name}.
-      	<button onClick={()=>CTRL.redirect("/edit")}>Edit</button>
+        My name is {CTRL.state.name}.
+        <button onClick={()=>CTRL.redirect("/edit")}>Edit</button>
       </div>
     );
   }
@@ -191,10 +191,10 @@ class EditPage extends Component {
   render() {
     return (
       <div>
-      	<input value={CTRL.state.name} placeholder="Type to change name"
-        	onChange={(event)=>CTRL.setState({ name: event.target.value })} />
-      	<button onClick={()=>CTRL.redirect("/")}>Back</button>
-				<button onClick={()=>CTRL.resetState()}>Reset</button>
+        <input value={CTRL.state.name} placeholder="Type to change name"
+          onChange={(event)=>CTRL.setState({ name: event.target.value })} />
+        <button onClick={()=>CTRL.redirect("/")}>Back</button>
+        <button onClick={()=>CTRL.resetState()}>Reset</button>
       </div>
     );
   }
