@@ -27,8 +27,17 @@ const CTRL = {
     CTRL.setState(CTRL.initialState);
   },
   redirect: (path) => {
-    CTRL.log(`redirect(${path})`);
-    CTRL.redirectTo = path;
+    let fullPath = undefined;
+    if(typeof path === "string") {
+      fullPath = path;
+    }
+    else if(typeof path === "object") {
+      fullPath = path.pathname !== undefined ?
+        path.pathname + (path.search || "") + (path.hash || "")
+      : undefined;
+    }
+    CTRL.log(`redirect(${fullPath})`);
+    CTRL.redirectTo = fullPath;
     CTRL.forceUpdate();
   }
 };

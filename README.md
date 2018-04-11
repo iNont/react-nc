@@ -112,6 +112,20 @@ React-NC provides `CTRL.redirect(path)` to control the ``react-router-dom`` rout
 CTRL.redirect("/login");
 ```
 
+You can also know where you are using `CTRL.location`
+
+```js
+// After you have done CTRL.redirect("/login?role=admin#loginForm")
+// In componentDidMount or somewhere you need to know where you anywhere
+console.log(CTRL.location);
+
+/* Output: {
+  pathname: "/login",
+  hash: "#loginForm",
+  search: "?role=admin"
+} */
+```
+
 ### Setting Up
 
 You have to wrap the component pass to ``Route`` component of ``react-router-dom`` with ``RouteControl``.
