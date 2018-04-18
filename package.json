@@ -1,6 +1,6 @@
 {
   "name": "react-nc",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "React-NC is state container for react app",
   "main": "build/index.js",
   "repository": {
@@ -12,7 +12,6 @@
   "devDependencies": {
     "prop-types": "^15.6.0",
     "react": "^15.5.4",
-    "react-router-dom": "^4.2.2",
     "webpack": "^2.6.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",

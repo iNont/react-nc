@@ -1,44 +1,37 @@
+import * as Utils from './Utils';
+
 const CTRL = {
-  app: { forceUpdate: ()=>{} },
+  app: undefined,
   debug: false,
   initialState: {},
-  state: {},
-  location: {
-    hash: window.location.hash,
-    pathname: window.location.pathname,
-    search: window.location.search,
-  },
+  routing: {},
   log: (text) => { if(CTRL.debug) console.log(`React-nc: ${text}`); },
   forceUpdate: () => {
-    CTRL.log("forceUpdate()");
+    if(!CTRL.app) {
+      throw new Error("Application wrapped by StateControl is not found");
+    }
     CTRL.app.forceUpdate();
   },
   setState: state => {
-    CTRL.log(`setState()`);
-    CTRL.state = { ...CTRL.state, ...state }
-    CTRL.forceUpdate();
+    if(!CTRL.app) {
+      throw new Error("Application wrapped by StateControl is not found");
+    }
+    CTRL.app.setState(state);
   },
   resetState: () => {
-    CTRL.log(`resetState()`);
-    CTRL.setState(CTRL.initialState)
+    CTRL.setState(Utils.deepCopy(CTRL.initialState));
    },
   initializeState: state => {
     CTRL.initialState = state;
-    CTRL.setState(CTRL.initialState);
+    if(CTRL.app) {
+      CTRL.resetState();
+    }
   },
-  redirect: (path) => {
-    let fullPath = undefined;
-    if(typeof path === "string") {
-      fullPath = path;
+  get state() {
+    if(!CTRL.app) {
+      throw new Error("Application wrapped by StateControl is not found");
     }
-    else if(typeof path === "object") {
-      fullPath = path.pathname !== undefined ?
-        path.pathname + (path.search || "") + (path.hash || "")
-      : undefined;
-    }
-    CTRL.log(`redirect(${fullPath})`);
-    CTRL.redirectTo = fullPath;
-    CTRL.forceUpdate();
+    return CTRL.app.state;
   }
 };
 
