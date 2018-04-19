@@ -44,7 +44,7 @@ class NCRouter extends Component {
       if( routeRegExp.test(pathname) ) {
         Match = e;
         let findParamValues = pathname.split("/");
-        let routePathSplited = routePath.split("/");
+        let routePathSplited = (CTRL.routing.prefix+routePath).split("/");
         let paramsToPass = {};
         routePathSplited.forEach((e,i)=>{
           if(params.includes(e.slice(1, -1))) {

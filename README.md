@@ -2,6 +2,10 @@
 
 Your react state can be anything and anywhere,, Create your universe with React-NC.
 
+### Updated
+
+- **Version 1.2.0**: `RouteControl` is now deprecated,, `NCRouter` is now provided for route management.
+
 ## Installation
 
 ```
@@ -102,33 +106,11 @@ Force update the component wrapped by ``StateControl``.
 
 ---
 
-# React-NC with Redirect (react-router-dom)
+# React-NC with NCRouter
 
-React-NC provides `CTRL.redirect(path)` to control the ``react-router-dom`` route.  
+`NCRouter` helps you manage your routes, it's easy to route to the path you want to.  
+*Note: You can still use `CTRL.redirect("/path")` with `react-router-dom` same as the previous version*
 
-### Usage
-
-```js
-CTRL.redirect("/login");
-```
-
-You can also know where you are using `CTRL.location`
-
-```js
-// After you have done CTRL.redirect("/login?role=admin#loginForm")
-// In componentDidMount or somewhere you need to know where you anywhere
-console.log(CTRL.location);
-
-/* Output: {
-  pathname: "/login",
-  hash: "#loginForm",
-  search: "?role=admin"
-} */
-```
-
-### Setting Up
-
-You have to wrap the component pass to ``Route`` component of ``react-router-dom`` with ``RouteControl``.
 
 ### Example
 
@@ -154,20 +136,22 @@ ReactDOM.render(
 ```js
 import React, { Component } from 'react';
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import CTRL, { StateControl, NCRouter, Route } from 'react-nc';
 
 import MainPage from './MainPage';
 import EditPage from './EditPage';
+import DetailPage from './DetailPage';
+
+CTRL.routing.setPrefix("/my-web");
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/edit" component={EditPage} />
-        </Switch>
-      </BrowserRouter>
+      <NCRouter>
+        <Route default path="/" component={MainPage} />
+        <Route path="/edit" component={EditPage} />
+        <Route path="/detail/{username}" component={DetailPage} />
+      </NCRouter>
     );
   }
 }
@@ -179,27 +163,28 @@ export default StateControl(App);
 ```js
 import React, { Component } from 'react';
 
-import CTRL, { RouteControl } from 'react-nc';
+import CTRL from 'react-nc';
 
 class MainPage extends Component {
   render() {
     return (
       <div>
         My name is {CTRL.state.name}.
-        <button onClick={()=>CTRL.redirect("/edit")}>Edit</button>
+        <button onClick={()=>CTRL.routing.redirect("/edit")}>Edit</button>
+        <button onClick={()=>CTRL.routing.redirect("/detail/"+CTRL.state.name)}>Detail</button>
       </div>
     );
   }
 }
 
-export default RouteControl(MainPage);
+export default MainPage;
 ```
 
 #### `EditPage.js`
 ```js
 import React, { Component } from 'react';
 
-import CTRL, { RouteControl } from 'react-nc';
+import CTRL from 'react-nc';
 
 class EditPage extends Component {
   render() {
@@ -207,12 +192,32 @@ class EditPage extends Component {
       <div>
         <input value={CTRL.state.name} placeholder="Type to change name"
           onChange={(event)=>CTRL.setState({ name: event.target.value })} />
-        <button onClick={()=>CTRL.redirect("/")}>Back</button>
+        <button onClick={()=>CTRL.routing.redirect("/")}>Back</button>
         <button onClick={()=>CTRL.resetState()}>Reset</button>
       </div>
     );
   }
 }
 
-export default RouteControl(EditPage);
+export default EditPage;
+```
+
+#### `DetailPage.js`
+```js
+import React, { Component } from 'react';
+
+import CTRL from 'react-nc';
+
+class DetailPage extends Component {
+  render() {
+    return (
+      <div>
+      	My username: {this.props.match.params.username}.
+        <button onClick={()=>CTRL.routing.redirect("/somewhere-does-not-exist")}>To default page</button>
+      </div>
+    );
+  }
+}
+
+export default DetailPage;
 ```
