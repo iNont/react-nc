@@ -1,5 +1,5 @@
 const deepCopy = function(ele) {
-  if(typeof ele === "object") {
+  if(typeof ele === "object" && ele !== null) {
     if(Array.isArray(ele)) {
       return [...ele.map(e=>deepCopy(e))];
     }
