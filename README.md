@@ -221,3 +221,59 @@ class DetailPage extends Component {
 
 export default DetailPage;
 ```
+
+---
+
+### Commands
+
+#### `CTRL.routing.setPrefix(prefix)`
+
+Set prefix of your routes. Then, all of your paths will be started with that prefix.
+
+```js
+CTRL.routing.setPrefix("/my-web");
+
+// If your path is "/edit", it will be "/my-web/edit" in browser url
+```
+
+#### `CTRL.routing.redirect(path)`
+
+Redirect to path, `path` can be string or object.
+
+```js
+CTRL.routing.setPrefix("/my-web");
+CTRL.routing.redirect("/edit");
+
+// location will be "/my-web/edit"
+```
+
+or `path` as object
+
+```js
+CTRL.routing.setPrefix("/my-web");
+CTRL.routing.redirect({
+  pathname: "edit",
+  search: "?id=inont",
+  hash: "#top"
+});
+
+// location will be "/my-web/edit?id=inont#top"
+```
+
+#### `CTRL.routing.replacePath(path)`
+
+Replace the current path to `path`.
+
+#### `CTRL.routing.query(query)`
+
+`query` as object, this will change query string on url to `query`.
+
+```js
+CTRL.routing.setPrefix("/my-web");
+CTRL.routing.redirect("/edit");
+CTRL.routing.query({
+  id: "inont"
+});
+
+// location will be "/my-web/edit?id=inont"
+```
