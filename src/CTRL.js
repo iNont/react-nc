@@ -12,11 +12,12 @@ const CTRL = {
     }
     CTRL.app.forceUpdate();
   },
-  setState: state => {
+  setState: (state, callback) => {
     if(!CTRL.app) {
       throw new Error("Application wrapped by StateControl is not found");
     }
-    CTRL.app.setState(state);
+    CTRL.app.setState(state, callback);
+    CTRL.app.forceUpdate();
   },
   resetState: () => {
     CTRL.setState(Utils.deepCopy(CTRL.initialState));
