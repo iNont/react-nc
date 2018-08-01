@@ -3,6 +3,7 @@ import * as Utils from './Utils';
 const CTRL = {
   app: undefined,
   debug: false,
+  reactNCLog: false,
   initialState: {},
   routing: {},
   log: (text) => { if(CTRL.debug) console.log(`React-nc: ${text}`); },
@@ -16,7 +17,13 @@ const CTRL = {
     if(!CTRL.app) {
       throw new Error("Application wrapped by StateControl is not found");
     }
-    CTRL.app.setState(state, callback);
+    CTRL.app.state = {
+      ...CTRL.app.state,
+      ...state
+    };
+    if(typeof callback === 'function') {
+      callback();
+    }
     CTRL.app.forceUpdate();
   },
   resetState: () => {
