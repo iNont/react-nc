@@ -5,7 +5,7 @@ import * as Utils from '../Utils';
 CTRL.routing = {
   prefix: "",
   location: {
-    pathname: window.location.pathname.startsWith(CTRL.routing.prefix) ?
+    pathname: window.location.pathname.startsWith(CTRL.routing.prefix || "") ?
       window.location.pathname.replace(CTRL.routing.prefix, "") : window.location.pathname,
     hash: window.location.hash,
     search: window.location.search

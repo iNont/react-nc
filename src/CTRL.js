@@ -34,7 +34,8 @@ const CTRL = {
   initializeState: state => {
     CTRL.initialState = state;
     CTRL.state = Utils.deepCopy(CTRL.initialState);
-  }
+  },
+  version: '1.2.9'
 };
 
 export default CTRL;

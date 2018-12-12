@@ -6,10 +6,10 @@ const Route = (props) => {}
 class NCRouter extends Component {
   render() {
     if(this.props.children === undefined) throw new Error("NCRouter requires at least one Route.");
-    let array = Array.isArray(this.props.children) ? this.props.children : [this.props.children];
+    let array = Array.isArray(this.props.children) ? this.props.children.filter(e => e) : [this.props.children];
     let match = {};
     let location = {
-      pathname: window.location.pathname.startsWith(CTRL.routing.prefix) ?
+      pathname: window.location.pathname.startsWith(CTRL.routing.prefix || "") ?
         window.location.pathname.replace(CTRL.routing.prefix, "") : window.location.pathname,
       hash: window.location.hash,
       search: window.location.search
@@ -62,7 +62,7 @@ class NCRouter extends Component {
       match = {path: Match.props.path};
       window.history.replaceState(null, "", `${CTRL.routing.prefix}${Default.props.path}`);
       location = {
-        pathname: window.location.pathname.startsWith(CTRL.routing.prefix) ?
+        pathname: window.location.pathname.startsWith(CTRL.routing.prefix || "") ?
           window.location.pathname.replace(CTRL.routing.prefix, "") : window.location.pathname,
         hash: window.location.hash,
         search: window.location.search
