@@ -3,6 +3,10 @@ import CTRL from '../CTRL';
 
 const Route = (props) => {}
 
+window.onpopstate = function(event) {
+    CTRL.forceUpdate()
+}
+
 class NCRouter extends Component {
   render() {
     if(this.props.children === undefined) throw new Error("NCRouter requires at least one Route.");
