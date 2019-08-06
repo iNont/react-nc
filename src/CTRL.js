@@ -8,11 +8,11 @@ const CTRL = {
   initialState: {},
   routing: {},
   log: (text) => { if(CTRL.debug) console.log(`React-nc: ${text}`); },
-  forceUpdate: () => {
+  forceUpdate: (...args) => {
     if(!CTRL.app) {
       throw new Error("Application wrapped by StateControl is not found");
     }
-    CTRL.app.forceUpdate();
+    CTRL.app.forceUpdate(...args);
   },
   setState: (state, callback) => {
     if(!CTRL.app) {
@@ -22,14 +22,11 @@ const CTRL = {
       ...CTRL.state,
       ...state
     };
-    if(typeof callback === 'function') {
-      callback();
-    }
-    CTRL.forceUpdate();
+    CTRL.forceUpdate(callback);
   },
-  resetState: () => {
+  resetState: (callback) => {
     CTRL.state = Utils.deepCopy(CTRL.initialState);
-    CTRL.forceUpdate();
+    CTRL.forceUpdate(callback);
    },
   initializeState: state => {
     CTRL.initialState = state;
